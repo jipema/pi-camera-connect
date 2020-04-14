@@ -29,6 +29,8 @@ export interface StreamOptions {
   fps?: number;
   codec?: Codec;
   sensorMode?: SensorMode;
+   iso?: number;
+   exposure?: string;
 }
 
 declare interface StreamCamera {
@@ -157,6 +159,15 @@ class StreamCamera extends EventEmitter {
            *
            */
           ...(this.options.sensorMode ? ['--mode', this.options.sensorMode.toString()] : []),
+
+           /**
+             * Exposure
+             */
+           ...(this.options.exposure ? ['--exposure', this.options.exposure.toString()] : []),
+           /**
+        * Exposure
+        */
+           ...(this.options.iso ? ['--ISO', this.options.iso.toString()] : []),
 
           /**
            * Capture time (ms)
